@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.627dfbcc.css",
+    "main.js": "/static/js/main.769ffafc.js",
+    "static/media/hero-bg.mp4": "/static/media/hero-bg.7905947df84dc2c6cf78.mp4",
+    "static/media/gallery2.jpg": "/static/media/gallery2.5950e9bfafd1b423ca50.jpg",
+    "static/media/gallery4.jpg": "/static/media/gallery4.eff6a8132d6dfe5b33f9.jpg",
+    "static/media/coxdiack-logo.png": "/static/media/coxdiack-logo.5b1e565bb44351c53ac1.png",
+    "static/media/gallery1.jpg": "/static/media/gallery1.2d7eef51dd99826b94d7.jpg",
+    "static/media/uiux.jpg": "/static/media/uiux.23f2a6394e8efb11ea58.jpg",
+    "static/media/gallery3.jpg": "/static/media/gallery3.f43b524a43ea65b4121b.jpg",
+    "static/media/web-logo.png": "/static/media/web-logo.3e08dc72fd77b8505861.png",
+    "static/media/branding.jpg": "/static/media/branding.39724625ea726f14a68f.jpg",
+    "index.html": "/index.html",
+    "main.627dfbcc.css.map": "/static/css/main.627dfbcc.css.map",
+    "main.769ffafc.js.map": "/static/js/main.769ffafc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.627dfbcc.css",
+    "static/js/main.769ffafc.js"
+  ]
+}

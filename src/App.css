@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  background-color: #071226;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+main {
+  padding: 2rem;
+}

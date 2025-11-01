@@ -1,52 +1,85 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import BackToHomeButton from "./BackToHomeButton";
 
-export default function Services() {
+import webLogo from "../assets/portfolio/web-logo.png";
+import branding from "../assets/portfolio/branding.jpg";
+import uiux from "../assets/portfolio/uiux.jpg";
+
+export default function Services({ setActive, setIsSidebarOpen }) {
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+
   const services = [
     {
-      title: "Creative Media",
+      title: "Web Design & Development",
+      image: webLogo,
       description:
-        "We bring stories to life through digital art, photography, and engaging content creation. From cinematic visuals to social media storytelling, our creative media service transforms ideas into experiences that capture attention and emotion. We don’t just create content — we craft connections.",
-      color: "from-[#00FFA3]/20 to-transparent",
+        "We craft responsive, visually stunning, and user-friendly websites designed to attract and convert your audience.",
     },
     {
-      title: "Branding",
+      title: "Brand Media & Storytelling",
+      image: branding,
       description:
-        "Your brand is more than a logo — it’s your voice, your vision, your digital identity. We help you design an authentic presence that stands out and speaks clearly to your audience. From strategy to style, every element we create reflects your unique story and mission.",
-      color: "from-[#00FFA3]/20 to-transparent",
+        "From captivating brand visuals to creative storytelling, we help brands connect emotionally with their audience.",
     },
     {
-      title: "Digital Solutions",
+      title: "Digital Strategy & Growth",
+      image: uiux,
       description:
-        "We build the tools that power modern brands — from sleek, responsive websites to intelligent digital systems tailored to your needs. Our goal is to bridge creativity and functionality, giving your brand the technology edge it deserves. Whether it’s a business portfolio, an automated workflow, or a digital experience — we turn your vision into results.",
-      color: "from-[#00FFA3]/20 to-transparent",
+        "We blend creativity with data-driven marketing strategies to boost visibility, engagement, and business growth.",
     },
   ];
 
   return (
-    <section className="p-10 text-white bg-gradient-to-b from-[#0A1837] to-[#071226] min-h-screen">
-      <h1 className="text-4xl font-bold text-center mb-10">
-        Our <span className="text-[#00FFA3]">Services</span>
+    <section className="bg-[#0A1837] text-white min-h-screen py-16 px-6 md:px-20 flex flex-col items-center">
+      <h1
+        data-aos="fade-up"
+        className="text-4xl font-bold text-[#00FFA3] mb-8 text-center"
+      >
+        Our Core Services
       </h1>
 
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full max-w-6xl">
         {services.map((service, index) => (
           <div
             key={index}
-            className="p-6 rounded-2xl bg-gradient-to-b from-[#132A5A]/40 to-[#0A1837]/60 border border-[#1E2A4A] shadow-lg hover:shadow-[#00FFA3]/20 transition-all"
+            data-aos="fade-up"
+            data-aos-delay={index * 150}
+            className="bg-[#11224E] p-6 rounded-2xl shadow-lg hover:shadow-[0_0_25px_#00FFA3] transition-all duration-300 border border-[#00FFA3]/20"
           >
-            <h2 className="text-2xl font-semibold text-[#00FFA3] mb-4">
+            <img
+              src={service.image}
+              alt={service.title}
+              className="w-full h-48 object-cover rounded-lg mb-5"
+            />
+            <h3 className="text-xl font-semibold mb-3 text-[#00FFA3]">
               {service.title}
-            </h2>
-            <p className="text-gray-300 leading-relaxed">
+            </h3>
+            <p className="text-gray-300 text-sm leading-relaxed">
               {service.description}
             </p>
           </div>
         ))}
       </div>
 
-      <p className="text-center text-gray-400 mt-12 italic">
-        “At Coxdiack Group, we don’t just follow digital trends — we set them.”
-      </p>
+      <div className="mt-10 max-w-3xl text-center text-gray-300">
+        <p data-aos="fade-up" className="mb-6">
+          Ready to bring your project to life? Whether you need a website, a
+          branding refresh, or a marketing strategy — our team is ready to help
+          you grow. Let’s collaborate today!
+        </p>
+        <button
+          onClick={() => setActive("contact")}
+          className="bg-[#00FFA3] text-[#0A1837] px-8 py-3 rounded-full font-semibold hover:bg-[#00cc84] transition-all"
+        >
+          Contact Us
+        </button>
+      </div>
+
+      <BackToHomeButton setActive={setActive} setIsSidebarOpen={setIsSidebarOpen} />
     </section>
   );
 }

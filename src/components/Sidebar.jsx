@@ -9,8 +9,6 @@ export default function Sidebar({ active, setActive, isOpen, setIsOpen }) {
     { id: "services", label: "Services" },
     { id: "portfolio", label: "Portfolio" },
     { id: "testimonials", label: "Testimonials" }, // <- ensure this exact id
-    { id: "feedback", label: "Feedback" },
-    { id: "ratings", label: "Ratings" },
     { id: "contact", label: "Contact" },
   ];
 

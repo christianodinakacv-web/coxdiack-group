@@ -7,9 +7,8 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Services from "./components/Services";
 import Portfolio from "./components/Portfolio";
-import Testimonials from "./components/Testimonials"; // <- ensure import
+import Testimonials from "./components/Testimonials";
 import Feedback from "./components/Feedback";
-import Ratings from "./components/Ratings";
 import Contact from "./components/Contact";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
 
@@ -25,7 +24,28 @@ export default function CoxdiackGroupApp() {
   const [active, setActive] = useState("home");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-  // keep sidebar open when active === "home"
+  // ✅ Admin login state (needed for shortcut)
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  // ✅ Admin keyboard shortcut: Ctrl + Shift + F opens Feedback
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.ctrlKey && e.shiftKey && e.key === "F") {
+        if (isAdmin) {
+          setActive("feedback");
+          setIsSidebarOpen(true);
+          console.log("🔐 Admin Feedback opened (shortcut)");
+        } else {
+          alert("Admin access required.");
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [isAdmin]);
+
+  // Sidebar stays open on Home
   useEffect(() => {
     if (active === "home") setIsSidebarOpen(true);
   }, [active]);
@@ -43,9 +63,11 @@ export default function CoxdiackGroupApp() {
       case "testimonials":
         return <Testimonials setActive={setActive} setIsSidebarOpen={setIsSidebarOpen} />;
       case "feedback":
-        return <Feedback setActive={setActive} setIsSidebarOpen={setIsSidebarOpen} />;
-      case "ratings":
-        return <Ratings setActive={setActive} setIsSidebarOpen={setIsSidebarOpen} />;
+        return isAdmin ? (
+          <Feedback setActive={setActive} setIsSidebarOpen={setIsSidebarOpen} />
+        ) : (
+          <h2 className="text-center mt-20 text-red-400">Unauthorized Access</h2>
+        );
       case "contact":
         return <Contact setActive={setActive} setIsSidebarOpen={setIsSidebarOpen} />;
       default:
@@ -67,6 +89,7 @@ export default function CoxdiackGroupApp() {
         setActive={setActive}
         isOpen={isSidebarOpen}
         setIsOpen={setIsSidebarOpen}
+        setIsAdmin={setIsAdmin}
       />
 
       <main className="flex-1 overflow-y-auto">

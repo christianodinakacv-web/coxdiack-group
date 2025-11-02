@@ -1,8 +1,8 @@
 // src/components/Home.jsx
 import React, { useState } from "react";
 import { FaFacebook, FaEnvelope, FaWhatsapp } from "react-icons/fa";
-import heroVideo from "../assets/hero-bg.mp4";
-import logo from "../assets/coxdiack-logo.png";
+import logoTransparent from "../assets/coxdiack-logo-transparent.png";
+import heroVideo from "../assets/bg.mp4";
 import gallery1 from "../assets/gallery1.jpg";
 import gallery2 from "../assets/gallery2.jpg";
 import gallery3 from "../assets/gallery3.jpg";
@@ -13,30 +13,44 @@ const Home = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   return (
-    <div className="bg-[#0A1837] text-white min-h-screen">
+    <div className="bg-[#0A1837] text-white min-h-screen md:pl-56 pt-4">
 
-      {/* ==== HERO SECTION ==== */}
-<section className="relative h-[300px] md:h-[350px] flex flex-col justify-center items-center bg-[#071226] text-white overflow-hidden rounded-xl mx-4 md:mx-10 mt-6">
+     {/* ==== HERO SECTION (UPDATED) ==== */}
+<section className="relative h-[380px] md:h-[500px] flex items-center justify-center bg-[#071226] text-white overflow-hidden rounded-xl mx-4 md:mx-10 mt-6">
 
+  {/* Background video */}
   <video
     autoPlay
     loop
     muted
     playsInline
-    className="absolute top-0 left-0 w-full h-full object-cover"
+    className="absolute inset-0 w-full h-full object-cover"
   >
     <source src={heroVideo} type="video/mp4" />
   </video>
 
-  <div className="relative z-10 text-center px-6">
+  {/* Slight dark overlay for cinematic effect */}
+  <div className="absolute inset-0 bg-black/40"></div>
+
+  {/* CENTERED CONTENT */}
+  <div className="relative z-10 flex flex-col items-center justify-center text-center px-6">
+
+    {/* Transparent Logo watermark */}
     <img
-      src={logo}
+      src={logoTransparent}
       alt="Coxdiack Group Logo"
-      className="w-[180px] md:w-[240px] mx-auto mb-6 drop-shadow-xl"
+      className="w-[160px] md:w-[220px] lg:w-[260px] opacity-90 drop-shadow-[0_6px_16px_rgba(0,0,0,0.6)] mb-4"
+      style={{ mixBlendMode: "screen" }}
     />
-    <h1 className="text-4xl md:text-5xl font-bold">
+
+    {/* Text */}
+    <h1 className="text-3xl md:text-5xl font-bold leading-tight">
       Welcome to <span className="text-[#00FFA3]">Coxdiack Group</span>
     </h1>
+
+    <p className="max-w-3xl mt-3 text-md md:text-lg text-gray-200/90">
+      Connecting Creativity Across Media, Events, and Digital Spaces
+    </p>
   </div>
 </section>
 

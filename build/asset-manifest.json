@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "./static/css/main.9c87f489.css",
-    "main.js": "./static/js/main.fb0ae601.js",
-    "static/media/hero-bg.mp4": "./static/media/hero-bg.7905947df84dc2c6cf78.mp4",
+    "main.css": "./static/css/main.737dc070.css",
+    "main.js": "./static/js/main.2446f1c5.js",
+    "static/media/bg.mp4": "./static/media/bg.60361fcc82078240f73a.mp4",
+    "static/media/coxdiack-logo-transparent.png": "./static/media/coxdiack-logo-transparent.907eec0ef413d7dd40d6.png",
     "static/media/gallery2.jpg": "./static/media/gallery2.5950e9bfafd1b423ca50.jpg",
     "static/media/gallery4.jpg": "./static/media/gallery4.eff6a8132d6dfe5b33f9.jpg",
-    "static/media/coxdiack-logo.png": "./static/media/coxdiack-logo.5b1e565bb44351c53ac1.png",
     "static/media/gallery1.jpg": "./static/media/gallery1.2d7eef51dd99826b94d7.jpg",
     "static/media/uiux.jpg": "./static/media/uiux.23f2a6394e8efb11ea58.jpg",
     "static/media/gallery3.jpg": "./static/media/gallery3.f43b524a43ea65b4121b.jpg",
     "static/media/web-logo.png": "./static/media/web-logo.3e08dc72fd77b8505861.png",
     "static/media/branding.jpg": "./static/media/branding.39724625ea726f14a68f.jpg",
     "index.html": "./index.html",
-    "main.9c87f489.css.map": "./static/css/main.9c87f489.css.map",
-    "main.fb0ae601.js.map": "./static/js/main.fb0ae601.js.map"
+    "main.737dc070.css.map": "./static/css/main.737dc070.css.map",
+    "main.2446f1c5.js.map": "./static/js/main.2446f1c5.js.map"
   },
   "entrypoints": [
-    "static/css/main.9c87f489.css",
-    "static/js/main.fb0ae601.js"
+    "static/css/main.737dc070.css",
+    "static/js/main.2446f1c5.js"
   ]
 }

@@ -5,6 +5,32 @@ body {
   color: white;
 }
 
+/* Smooth subtle hover effect — watermark stays bold */
+img[alt="Coxdiack Group Logo"] {
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  opacity: 1; /* ✅ keeps the logo bold even without hover */
+  mix-blend-mode: screen; /* ✅ blends logo on video (cinematic effect) */
+}
+
+img[alt="Coxdiack Group Logo"]:hover {
+  transform: scale(1.04);
+}
+
 main {
   padding: 2rem;
+}
+
+/* ✅ Fade stagger animation for testimonial cards */
+.testimonial-card {
+  transition: transform 0.25s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-6px);
+}
+
+/* ✅ Make the review cards more premium */
+.testimonial-bg {
+  background: linear-gradient(180deg, #0d1b42 0%, #071226 100%);
+  border: 1px solid rgba(0, 255, 163, 0.25);
 }

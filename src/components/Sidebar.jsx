@@ -2,13 +2,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-export default function Sidebar({ active, setActive, isOpen, setIsOpen }) {
+export default function Sidebar({ active, setActive, isOpen, setIsOpen, setIsAdmin }) {
   const menuItems = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
     { id: "services", label: "Services" },
     { id: "portfolio", label: "Portfolio" },
-    { id: "testimonials", label: "Testimonials" }, // <- ensure this exact id
+    { id: "testimonials", label: "Testimonials" }, 
     { id: "contact", label: "Contact" },
   ];
 
@@ -37,7 +37,8 @@ export default function Sidebar({ active, setActive, isOpen, setIsOpen }) {
               key={item.id}
               onClick={() => {
                 setActive(item.id);
-                // keep sidebar open for desktop home and force-close for others on mobile
+
+                // ✅ Sidebar stays open for Home (desktop)
                 if (item.id === "home") {
                   setIsOpen(true);
                 } else {
@@ -57,7 +58,23 @@ export default function Sidebar({ active, setActive, isOpen, setIsOpen }) {
         </ul>
       </nav>
 
-      <div className="p-4 text-sm text-gray-400 border-t border-[#11224E]">
+      {/* ✅ Hidden Admin Login Button (accessible via shortcut or clicking this tiny area) */}
+      <button
+        onClick={() => {
+          const pwd = prompt("Enter Admin Password:");
+          if (pwd === "CoxdiackAdmin2025") {
+            setIsAdmin(true);
+            alert("✅ Admin mode activated");
+          } else {
+            alert("❌ Incorrect Password");
+          }
+        }}
+        className="opacity-0 hover:opacity-20 p-2 text-xs"
+      >
+        Admin Login
+      </button>
+
+      <div className="p-4 text-sm text-gray-400 border-t border-[#11224E] text-center">
         © {new Date().getFullYear()} Coxdiack Group
       </div>
     </motion.aside>

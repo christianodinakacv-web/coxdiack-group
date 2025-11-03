@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.737dc070.css",
-    "main.js": "./static/js/main.2446f1c5.js",
+    "main.css": "./static/css/main.69ddcefd.css",
+    "main.js": "./static/js/main.a094a0fd.js",
     "static/media/bg.mp4": "./static/media/bg.60361fcc82078240f73a.mp4",
     "static/media/coxdiack-logo-transparent.png": "./static/media/coxdiack-logo-transparent.907eec0ef413d7dd40d6.png",
     "static/media/gallery2.jpg": "./static/media/gallery2.5950e9bfafd1b423ca50.jpg",
@@ -12,11 +12,11 @@
     "static/media/web-logo.png": "./static/media/web-logo.3e08dc72fd77b8505861.png",
     "static/media/branding.jpg": "./static/media/branding.39724625ea726f14a68f.jpg",
     "index.html": "./index.html",
-    "main.737dc070.css.map": "./static/css/main.737dc070.css.map",
-    "main.2446f1c5.js.map": "./static/js/main.2446f1c5.js.map"
+    "main.69ddcefd.css.map": "./static/css/main.69ddcefd.css.map",
+    "main.a094a0fd.js.map": "./static/js/main.a094a0fd.js.map"
   },
   "entrypoints": [
-    "static/css/main.737dc070.css",
-    "static/js/main.2446f1c5.js"
+    "static/css/main.69ddcefd.css",
+    "static/js/main.a094a0fd.js"
   ]
 }

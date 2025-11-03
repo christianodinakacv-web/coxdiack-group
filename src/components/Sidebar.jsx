@@ -17,7 +17,8 @@ export default function Sidebar({ active, setActive, isOpen, setIsOpen, setIsAdm
       initial={{ x: -250 }}
       animate={{ x: isOpen ? 0 : -250 }}
       transition={{ duration: 0.35 }}
-      className={`fixed left-0 top-0 h-full w-56 bg-[#071226] text-white flex flex-col shadow-2xl z-40 md:translate-x-0`}
+      className={`fixed left-0 top-0 h-full w-56 bg-[#071226] text-white flex flex-col shadow-2xl z-20 md:translate-x-0`}
+
     >
       <div className="p-6 text-lg font-bold border-b border-[#1E2B4D] flex justify-between items-center">
         Coxdiack<span className="text-[#00FFA3]">Group</span>

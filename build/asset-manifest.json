@@ -1,22 +1,19 @@
 {
   "files": {
-    "main.css": "./static/css/main.69ddcefd.css",
-    "main.js": "./static/js/main.a094a0fd.js",
-    "static/media/bg.mp4": "./static/media/bg.60361fcc82078240f73a.mp4",
+    "main.css": "./static/css/main.94b909ac.css",
+    "main.js": "./static/js/main.097af3ef.js",
+    "static/media/picture4.png": "./static/media/picture4.345cd9efb7b2d5f04a93.png",
     "static/media/coxdiack-logo-transparent.png": "./static/media/coxdiack-logo-transparent.907eec0ef413d7dd40d6.png",
-    "static/media/gallery2.jpg": "./static/media/gallery2.5950e9bfafd1b423ca50.jpg",
-    "static/media/gallery4.jpg": "./static/media/gallery4.eff6a8132d6dfe5b33f9.jpg",
-    "static/media/gallery1.jpg": "./static/media/gallery1.2d7eef51dd99826b94d7.jpg",
-    "static/media/uiux.jpg": "./static/media/uiux.23f2a6394e8efb11ea58.jpg",
-    "static/media/gallery3.jpg": "./static/media/gallery3.f43b524a43ea65b4121b.jpg",
-    "static/media/web-logo.png": "./static/media/web-logo.3e08dc72fd77b8505861.png",
-    "static/media/branding.jpg": "./static/media/branding.39724625ea726f14a68f.jpg",
+    "static/media/picture2.png": "./static/media/picture2.5950e9bfafd1b423ca50.png",
+    "static/media/picture3.png": "./static/media/picture3.eff6a8132d6dfe5b33f9.png",
+    "static/media/picture1.png": "./static/media/picture1.2d7eef51dd99826b94d7.png",
+    "static/media/picture5.png": "./static/media/picture5.f43b524a43ea65b4121b.png",
     "index.html": "./index.html",
-    "main.69ddcefd.css.map": "./static/css/main.69ddcefd.css.map",
-    "main.a094a0fd.js.map": "./static/js/main.a094a0fd.js.map"
+    "main.94b909ac.css.map": "./static/css/main.94b909ac.css.map",
+    "main.097af3ef.js.map": "./static/js/main.097af3ef.js.map"
   },
   "entrypoints": [
-    "static/css/main.69ddcefd.css",
-    "static/js/main.a094a0fd.js"
+    "static/css/main.94b909ac.css",
+    "static/js/main.097af3ef.js"
   ]
 }

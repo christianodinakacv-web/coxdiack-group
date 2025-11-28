@@ -1,0 +1,36 @@
+ Volume in drive C has no label.
+ Volume Serial Number is 74BF-C389
+
+ Directory of C:\CoxdiackGroup\src\assets
+
+02/11/2025  02:01 pm    <DIR>          .
+22/11/2025  01:46 pm    <DIR>          ..
+01/11/2025  10:34 pm        31,211,872 bg.mp4
+02/11/2025  01:56 pm         2,247,015 coxdiack-logo-transparent.png
+14/10/2025  10:11 pm         1,045,036 coxdiack-logo.png
+20/10/2025  10:54 pm           169,864 gallery1.jpg
+20/10/2025  11:02 pm         1,982,716 gallery2.jpg
+19/10/2025  02:19 pm            34,186 gallery3.jpg
+20/10/2025  11:13 pm         1,745,956 gallery4.jpg
+09/11/2025  08:48 pm    <DIR>          portfolio
+               7 File(s)     38,436,645 bytes
+
+ Directory of C:\CoxdiackGroup\src\assets\portfolio
+
+09/11/2025  08:48 pm    <DIR>          .
+02/11/2025  02:01 pm    <DIR>          ..
+19/10/2025  02:22 pm            14,714 branding.jpg
+09/11/2025  04:31 pm            79,558 branding1.webp
+09/11/2025  05:08 pm            45,612 branding2.webp
+09/11/2025  04:46 pm            43,886 media1.webp
+09/11/2025  04:58 pm            46,772 media2.webp
+19/10/2025  02:58 pm           143,305 uiux.jpg
+19/10/2025  02:45 pm            26,196 web-logo.png
+09/11/2025  04:28 pm            26,094 web1.webp
+09/11/2025  04:29 pm            84,094 web2.webp
+09/11/2025  04:29 pm            48,782 web3.webp
+              10 File(s)        559,013 bytes
+
+     Total Files Listed:
+              17 File(s)     38,995,658 bytes
+               5 Dir(s)  16,278,487,040 bytes free

@@ -1,83 +1,85 @@
-// src/components/Sidebar.jsx
-import React from "react";
+import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import {
+  FaHome,
+  FaInfoCircle,
+  FaServicestack,
+  FaFolderOpen,
+  FaComments,
+  FaEnvelope,
+  FaLock,
+} from "react-icons/fa";
 
-export default function Sidebar({ active, setActive, isOpen, setIsOpen, setIsAdmin }) {
-  const menuItems = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "services", label: "Services" },
-    { id: "portfolio", label: "Portfolio" },
-    { id: "testimonials", label: "Testimonials" }, 
-    { id: "contact", label: "Contact" },
+export default function Sidebar({ isOpen, setIsOpen }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [showAdmin, setShowAdmin] = useState(false);
+
+  const menu = [
+    { label: "Home", path: "/", icon: <FaHome /> },
+    { label: "About", path: "/about", icon: <FaInfoCircle /> },
+    { label: "Services", path: "/services", icon: <FaServicestack /> },
+    { label: "Portfolio", path: "/portfolio", icon: <FaFolderOpen /> },
+    { label: "Testimonials", path: "/testimonials", icon: <FaComments /> },
+    { label: "Contact", path: "/contact", icon: <FaEnvelope /> },
   ];
+
+  const handleAdminLogin = () => {
+    const pwd = prompt("Enter admin password:");
+    if (pwd === "CoxdiackAdmin2025") {
+      localStorage.setItem("isAdmin", "true");
+      alert("Admin mode activated");
+      navigate("/feedback");
+    } else {
+      alert("Incorrect password");
+    }
+  };
 
   return (
     <motion.aside
-      initial={{ x: -250 }}
-      animate={{ x: isOpen ? 0 : -250 }}
-      transition={{ duration: 0.35 }}
-      className={`fixed left-0 top-0 h-full w-56 bg-[#071226] text-white flex flex-col shadow-2xl z-20 md:translate-x-0`}
-
+      initial={{ x: -260 }}
+      animate={{ x: isOpen ? 0 : -260 }}
+      transition={{ type: "spring", stiffness: 180, damping: 22 }}
+      className="fixed left-0 top-0 h-screen w-60 bg-[#0A1837] border-r border-[#11224E] text-white shadow-xl z-40 hidden md:flex flex-col"
     >
-      <div className="p-6 text-lg font-bold border-b border-[#1E2B4D] flex justify-between items-center">
-        Coxdiack<span className="text-[#00FFA3]">Group</span>
-
-        <button
-          className="md:hidden text-gray-400 hover:text-[#00FFA3]"
-          onClick={() => setIsOpen(false)}
-        >
-          ✕
-        </button>
+      {/* Brand */}
+      <div className="p-5 border-b border-[#11224E]">
+        <h1 className="font-bold text-xl">
+          Coxdiack<span className="text-[#00FFA3]">Group</span>
+        </h1>
       </div>
 
-      <nav className="flex-1 overflow-y-auto">
-        <ul className="p-3 space-y-2">
-          {menuItems.map((item) => (
-            <li
-              key={item.id}
-              onClick={() => {
-                setActive(item.id);
-
-                // ✅ Sidebar stays open for Home (desktop)
-                if (item.id === "home") {
-                  setIsOpen(true);
-                } else {
-                  setIsOpen(false);
-                }
-              }}
-              className={`py-3 px-3 rounded-lg cursor-pointer transition-all duration-200
-                ${
-                  active === item.id
-                    ? "bg-[#00FFA3] text-[#071226] font-semibold shadow"
-                    : "hover:bg-[#11224E] hover:text-[#00FFA3]"
-                }`}
+      {/* Menu */}
+      <ul className="flex-1 p-4 space-y-2">
+        {menu.map((item) => {
+          const active = location.pathname === item.path;
+          return (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`flex items-center gap-3 px-4 py-2 rounded-md transition-all
+              ${
+                active
+                  ? "bg-[#00FFA3] text-[#071226] font-semibold"
+                  : "text-gray-300 hover:bg-[#11224E]"
+              }`}
             >
+              {item.icon}
               {item.label}
-            </li>
-          ))}
-        </ul>
-      </nav>
+            </Link>
+          );
+        })}
 
-      {/* ✅ Hidden Admin Login Button (accessible via shortcut or clicking this tiny area) */}
-      <button
-        onClick={() => {
-          const pwd = prompt("Enter Admin Password:");
-          if (pwd === "CoxdiackAdmin2025") {
-            setIsAdmin(true);
-            alert("✅ Admin mode activated");
-          } else {
-            alert("❌ Incorrect Password");
-          }
-        }}
-        className="opacity-0 hover:opacity-20 p-2 text-xs"
-      >
-        Admin Login
-      </button>
-
-      <div className="p-4 text-sm text-gray-400 border-t border-[#11224E] text-center">
-        © {new Date().getFullYear()} Coxdiack Group
-      </div>
+        {/* Hidden Admin Trigger */}
+        <button
+          onClick={() => handleAdminLogin()}
+          className="opacity-30 hover:opacity-100 text-xs mt-6 mx-auto flex items-center gap-2"
+        >
+          <FaLock size={12} />
+          Admin Login
+        </button>
+      </ul>
     </motion.aside>
   );
 }

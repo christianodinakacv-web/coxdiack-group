@@ -2,20 +2,15 @@
 
 import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
-
-/**
- * Testimonials Page
- * Works with Google Apps Script WebApp using URL-encoded POST
- *
- * Sheet Headers:
- * Timestamp | Name | Email | Message | Rating | Reaction
- */
-
-// YOUR FINAL VERIFIED WORKING WEBAPP URL:
-const WEBAPP_URL =
-  import.meta.env?.VITE_WEBAPP_URL ||
-  process.env.REACT_APP_WEBAPP_URL ||
-  "https://script.google.com/macros/s/AKfycbztIXS2RSDTShX-ZGpW1x4cXEvp_LjAgkYX17hX-dtCGnerrl9Oxlvkk4kxjoV-ZbX_2g/exec";
+import { db } from "../firebase";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  serverTimestamp,
+  query,
+  orderBy,
+} from "firebase/firestore";
 
 export default function Testimonials() {
   useEffect(() => {
@@ -32,61 +27,28 @@ export default function Testimonials() {
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(false);
 
-  const isAdmin =
-    typeof window !== "undefined" &&
-    window.localStorage.getItem("isAdmin") === "true";
-
-  // ======================================
-  // GET REVIEWS
-  // ======================================
+  // ==========================
+  // GET REVIEWS FROM FIRESTORE
+  // ==========================
   const fetchReviews = async () => {
     setFetching(true);
 
     try {
-      const resp = await fetch(WEBAPP_URL + "?mode=read", {
-        cache: "no-cache",
-      });
+      const q = query(
+        collection(db, "testimonials"),
+        orderBy("createdAt", "desc") // newest first
+      );
 
-      const text = await resp.text();
-      let parsed;
-      try {
-        parsed = JSON.parse(text);
-      } catch {
-        parsed = null;
-      }
+      const snap = await getDocs(q);
 
-      let data = [];
-      if (parsed) {
-        if (Array.isArray(parsed)) data = parsed;
-        else if (parsed.data) data = parsed.data;
-      }
+      const list = snap.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
 
-      // Normalize row objects
-      const normalized = data
-        .map((row) => {
-          if (typeof row !== "object" || Array.isArray(row)) return null;
-
-          return {
-            Timestamp: row.Timestamp || "",
-            Name: row.Name || "",
-            Email: row.Email || "",
-            Message: row.Message || "",
-            Rating: Number(row.Rating || 0),
-            Reaction: row.Reaction || "",
-          };
-        })
-        .filter(Boolean);
-
-      // Newest first
-      normalized.sort((a, b) => {
-        const ta = new Date(a.Timestamp).getTime() || 0;
-        const tb = new Date(b.Timestamp).getTime() || 0;
-        return tb - ta;
-      });
-
-      setReviews(normalized);
+      setReviews(list);
     } catch (err) {
-      console.error("Fetch error:", err);
+      console.error("Fetch Firestore Error:", err);
     }
 
     setFetching(false);
@@ -96,36 +58,32 @@ export default function Testimonials() {
     fetchReviews();
   }, []);
 
-  // ======================================
-  // SUBMIT REVIEW (WORKING VERSION)
-  // ======================================
- const handleSubmit = async (e) => {
-  e?.preventDefault?.();
+  // ==========================
+  // SUBMIT REVIEW TO FIRESTORE
+  // ==========================
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (!name.trim() || !message.trim() || rating === 0) {
-    alert("Please enter your name, message, and rating.");
-    return;
-  }
+    if (!name.trim() || !message.trim() || rating === 0) {
+      alert("Please complete all required fields.");
+      return;
+    }
 
-  setLoading(true);
+    setLoading(true);
 
-  try {
-    const formData = new URLSearchParams({
-      name: name.trim(),
-      email: (email || "").trim(),
-      message: message.trim(),
-      rating: String(rating),
-      reaction: (reaction || "").trim(),
-    });
+    try {
+      await addDoc(collection(db, "testimonials"), {
+        name: name.trim(),
+        email: email.trim(),
+        message: message.trim(),
+        reaction: reaction.trim(),
+        rating,
+        approved: false, // admin will approve in dashboard later
+        featured: false, // optional
+        createdAt: serverTimestamp(),
+      });
 
-    const resp = await fetch(WEBAPP_URL, {
-      method: "POST",
-      body: formData,   // ❗ NO HEADERS HERE
-    });
-
-    console.log("Submit response:", await resp.text());
-
-      // Reset fields
+      // Reset form
       setName("");
       setEmail("");
       setMessage("");
@@ -133,25 +91,26 @@ export default function Testimonials() {
       setReaction("");
 
       await fetchReviews();
-      alert("Thanks — your review has been submitted!");
+
+      alert("Thank you! Your review has been submitted.");
     } catch (err) {
-      console.error("Submit error:", err);
+      console.error("Submit Firestore Error:", err);
       alert("Failed to submit review.");
     }
 
     setLoading(false);
   };
 
-  // ======================================
-  // JSX RENDER
-  // ======================================
+  // ==========================
+  // RENDER UI
+  // ==========================
   return (
     <div className="min-h-screen bg-[#0A1837] text-white pt-28 pb-20 px-6">
       <h1 className="text-4xl font-bold text-[#00FFA3] text-center mb-8">
         What People Are Saying
       </h1>
 
-      {/* Form */}
+      {/* FORM */}
       <form
         onSubmit={handleSubmit}
         className="max-w-lg mx-auto bg-[#10214F] p-6 rounded-xl shadow-lg mb-12"
@@ -175,7 +134,7 @@ export default function Testimonials() {
           className="w-full p-3 rounded-md bg-[#0A1837] text-white border border-gray-700 mb-3"
         />
 
-        {/* Rating */}
+        {/* RATING */}
         <div className="flex items-center gap-3 mb-4">
           <div className="flex gap-2">
             {[1, 2, 3, 4, 5].map((star) => (
@@ -224,7 +183,7 @@ export default function Testimonials() {
         </button>
       </form>
 
-      {/* Reviews */}
+      {/* REVIEWS DISPLAY */}
       <div className="max-w-5xl mx-auto">
         {fetching ? (
           <p className="text-center text-gray-400">Loading reviews…</p>
@@ -244,7 +203,7 @@ export default function Testimonials() {
                         key={s}
                         size={16}
                         className={`${
-                          (r.Rating || 0) >= s
+                          (r.rating || 0) >= s
                             ? "text-yellow-400"
                             : "text-gray-500"
                         }`}
@@ -253,22 +212,22 @@ export default function Testimonials() {
                   </div>
 
                   <div className="text-xs text-gray-400">
-                    {r.Timestamp
-                      ? new Date(r.Timestamp).toLocaleString()
+                    {r.createdAt?.seconds
+                      ? new Date(r.createdAt.seconds * 1000).toLocaleString()
                       : ""}
                   </div>
                 </div>
 
-                <p className="font-semibold">{r.Name || "Anonymous"}</p>
-                {r.Email && (
-                  <p className="text-sm text-gray-400">{r.Email}</p>
+                <p className="font-semibold">{r.name || "Anonymous"}</p>
+                {r.email && (
+                  <p className="text-sm text-gray-400">{r.email}</p>
                 )}
 
-                {r.Reaction && (
-                  <p className="text-sm text-[#00FFA3] mt-2">“{r.Reaction}”</p>
+                {r.reaction && (
+                  <p className="text-sm text-[#00FFA3] mt-2">“{r.reaction}”</p>
                 )}
 
-                <p className="text-gray-300 mt-3">{r.Message}</p>
+                <p className="text-gray-300 mt-3">{r.message}</p>
               </div>
             ))}
           </div>

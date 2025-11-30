@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";     // <-- ADD THIS
 import FloatingWhatsApp from "../components/FloatingWhatsApp";
 
 export default function AppLayout() {
@@ -27,6 +28,8 @@ return ( <div className="min-h-screen bg-[#0A1837] text-white flex">
     <main className="pt-16 px-4 md:px-8">
       <Outlet />
     </main>
+    
+    <Footer />                 {/* <-- ADD THIS */}
 
     <FloatingWhatsApp />
   </div>

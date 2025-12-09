@@ -1,39 +1,13 @@
 // src/pages/admin/AdminRoute.jsx
-import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
-import { auth } from "../../firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../../auth/AuthProvider";
 
-export default function AdminRoute({ children }) {
-  const [loading, setLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
+export default function AdminRoute() {
+  const { loading, isAdmin } = useAuth();
 
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        setIsAdmin(false);
-        setLoading(false);
-        return;
-      }
-      try {
-        const tokenResult = await user.getIdTokenResult(true);
-        setIsAdmin(!!(tokenResult?.claims?.admin));
-      } catch (err) {
-        console.error("Error reading token:", err);
-        setIsAdmin(false);
-      } finally {
-        setLoading(false);
-      }
-    });
+  if (loading) return <div className="p-8 text-white">Checking admin access…</div>;
+  if (!isAdmin) return <Navigate to="/admin/login" replace />;
 
-    return () => unsub();
-  }, []);
-
-  if (loading) return <div className="p-8 text-white">Checking access…</div>;
-  if (!isAdmin) {
-    // Not admin: sign out to clear any non-admin session and redirect to login
-    return <Navigate to="/admin/login" replace />;
-  }
-
-  return children;
+  return <Outlet />;
 }

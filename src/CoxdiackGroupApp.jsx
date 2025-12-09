@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// src/App.jsx
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 // Layout
 import AppLayout from "./layouts/AppLayout";
@@ -13,11 +15,16 @@ import Contact from "./pages/Contact";
 import Testimonials from "./pages/Testimonials";
 import Feedback from "./pages/Feedback";
 import Gallery from "./pages/Gallery";
+import NotFound from "./pages/NotFound";
 
 // Admin Pages
-import AdminLogin from "./pages/admin/Login";          // UPDATED PATH
-import AdminDashboard from "./pages/admin/Dashboard";  // UPDATED PATH
-import AdminRoute from "./pages/admin/AdminRoute";     // NEW FILE
+import AdminLogin from "./pages/admin/Login";
+import Dashboard from "./pages/admin/Dashboard";
+import Reviews from "./pages/admin/Reviews";
+import NotificationsPage from "./pages/admin/NotificationsPage";
+
+// Admin Route Guard
+import AdminRoute from "./pages/admin/AdminRoute";
 
 // Service Pages
 import WebDesign from "./pages/services/WebDesign";
@@ -29,44 +36,41 @@ export default function App() {
     <Router>
       <Routes>
 
-        {/* Public Home (no layout wrapper) */}
-        <Route path="/" element={<Home />} />
-
-        {/* Admin Login (no layout wrapper) */}
+        {/* ---------- Public Admin Login ---------- */}
         <Route path="/admin/login" element={<AdminLogin />} />
 
-        {/* Protected Admin Dashboard */}
-        <Route
-          path="/admin"
-          element={
-            <AdminRoute>
-              <AdminDashboard />
-            </AdminRoute>
-          }
-        />
+        {/* ---------- Protected Admin Routes ---------- */}
+        <Route element={<AdminRoute />}>
 
-        {/* Everything below uses the App Layout */}
+          {/* Redirect /admin → /admin/dashboard */}
+          <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/reviews" element={<Reviews />} />
+          <Route path="/admin/notifications" element={<NotificationsPage />} />
+        </Route>
+
+        {/* ---------- Public Website (with layout) ---------- */}
         <Route element={<AppLayout />}>
-
-          {/* Main Pages */}
+          <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+
+          {/* Service Sub-Pages */}
+          <Route path="/services/web-design" element={<WebDesign />} />
+          <Route path="/services/brand-identity" element={<BrandIdentity />} />
+          <Route path="/services/digital-strategy" element={<DigitalStrategy />} />
+
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/portfolio/:id" element={<PortfolioDetail />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/gallery" element={<Gallery />} />
 
-          {/* Service Sub-pages */}
-          <Route path="/services/web-design" element={<WebDesign />} />
-          <Route path="/services/brand-identity" element={<BrandIdentity />} />
-          <Route path="/services/digital-strategy" element={<DigitalStrategy />} />
-
-          {/* Dynamic Portfolio Case Study */}
-          <Route path="/portfolio/:id" element={<PortfolioDetail />} />
-
+          {/* 404 for all public routes */}
+          <Route path="*" element={<NotFound />} />
         </Route>
-
       </Routes>
     </Router>
   );

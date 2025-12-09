@@ -1,89 +1,68 @@
 // src/pages/admin/Login.jsx
-import React, { useState, useEffect } from "react";
-import { auth } from "../../firebase";
-import {
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-} from "firebase/auth";
+import React, { useState } from "react";
+import { auth } from "../../firebase/config";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../auth/AuthProvider";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
   const navigate = useNavigate();
+  const { user, loading, refreshClaims } = useAuth();
 
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // If already signed in, try to go to admin dashboard
-        navigate("/admin");
-      }
-    });
-    return () => unsub();
-  }, [navigate]);
+  if (!loading && user) {
+    navigate("/admin/dashboard");
+  }
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setBusy(true);
+
     try {
-      await signInWithEmailAndPassword(auth, email.trim(), password);
-      // Router will navigate via onAuthStateChanged
+      await signInWithEmailAndPassword(auth, email.trim(), password.trim());
+      await refreshClaims();
+      navigate("/admin/dashboard");
     } catch (err) {
-      console.error(err);
-      alert("Failed to sign in. Check credentials.");
-    } finally {
-      setBusy(false);
+      console.error("Login failed:", err);
+      alert(err.message || "Login failed");
     }
+
+    setBusy(false);
   };
 
   return (
     <div className="min-h-screen bg-[#0A1837] text-white pt-28 px-4">
       <div className="max-w-md mx-auto bg-[#10214F] p-6 rounded-xl shadow-md">
-        <h2 className="text-2xl font-semibold text-[#00FFA3] mb-4">
-          Admin Sign In
-        </h2>
+        <h2 className="text-2xl font-semibold text-[#00FFA3] mb-4">Admin Login</h2>
 
         <form onSubmit={handleLogin}>
           <input
-            placeholder="Email"
+            type="email"
+            required
+            className="w-full p-3 rounded-md mb-3 bg-[#0A1837] border border-gray-700"
+            placeholder="Email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-3 rounded-md mb-3 bg-[#0A1837] border border-gray-700"
-            required
-            type="email"
           />
+
           <input
+            type="password"
+            required
+            className="w-full p-3 rounded-md mb-4 bg-[#0A1837] border border-gray-700"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-3 rounded-md mb-4 bg-[#0A1837] border border-gray-700"
-            required
-            type="password"
           />
 
-          <div className="flex gap-3">
-            <button
-              type="submit"
-              disabled={busy}
-              className="flex-1 bg-[#00FFA3] text-[#002B36] py-2 rounded-md font-semibold"
-            >
-              {busy ? "Signing in…" : "Sign in"}
-            </button>
-
-            <button
-              type="button"
-              onClick={async () => {
-                await signOut(auth);
-                setEmail("");
-                setPassword("");
-              }}
-              className="px-4 py-2 rounded-md border border-[#00FFA3]"
-            >
-              Sign out
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={busy}
+            className="w-full bg-[#00FFA3] text-[#002B36] py-2 rounded-md font-semibold"
+          >
+            {busy ? "Signing in…" : "Sign In"}
+          </button>
         </form>
       </div>
     </div>

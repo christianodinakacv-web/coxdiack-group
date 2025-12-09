@@ -1,30 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { auth } from "../firebase/config";
-import { onAuthStateChanged, getIdTokenResult } from "firebase/auth";
+// src/components/ProtectedRoute.jsx
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthProvider";
 
 export default function ProtectedRoute({ children }) {
-  const [allowed, setAllowed] = useState(null);
+  const { user, loading } = useAuth();
 
-  useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) return (window.location.href = "/admin/login");
+  if (loading) return <div className="text-white p-8">Checking access…</div>;
+  if (!user) return <Navigate to="/admin/login" replace />;
 
-      const token = await getIdTokenResult(user);
-
-      if (token.claims.admin === true) {
-        setAllowed(true);
-      } else {
-        alert("You are not authorized");
-        auth.signOut();
-        window.location.href = "/admin/login";
-      }
-    });
-  }, []);
-
-  if (allowed === null)
-    return (
-      <div className="text-center text-white mt-40 text-xl">Checking access…</div>
-    );
-
-  return <>{children}</>;
+  return children;
 }

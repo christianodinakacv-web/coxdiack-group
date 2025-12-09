@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
-import { db } from "../firebase";
+import { auth, db } from "../firebase/config";
 import {
   collection,
   addDoc,

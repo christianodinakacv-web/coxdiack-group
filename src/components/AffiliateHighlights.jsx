@@ -19,7 +19,7 @@ export default function AffiliateHighlights() {
         className="inline-block px-8 py-4 bg-[#00FFA3] text-[#071226] rounded-lg font-semibold hover:bg-[#00cc84] transition-all"
       >
         Visit My Affiliate Resource Hub
-      </a>
+      </a>                                                                             
     </section>
   );
 }

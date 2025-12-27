@@ -10,6 +10,7 @@ export default function Services() {
         What We Offer
       </h1>
 
+      {/* Services Grid */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {portfolioData.map((item) => (
           <div
@@ -21,9 +22,23 @@ export default function Services() {
             </h2>
             <p className="text-gray-300 mb-5">{item.desc}</p>
 
+            {/* Recommended Tools */}
+            {item.tools && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {item.tools.map((tool, index) => (
+                  <span
+                    key={index}
+                    className="text-xs px-3 py-1 rounded-full bg-[#0A1837] border border-white/10 text-gray-300"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            )}
+
             <Link
               to={`/portfolio/${item.id}`}
-              className="block text-center bg-[#00FFA3] text-[#002b36] py-2 font-semibold rounded-lg hover:bg-[#00cc84] transition"
+              className="block mt-6 text-center bg-[#00FFA3] text-[#002b36] py-2 font-semibold rounded-lg hover:bg-[#00cc84] transition"
             >
               See Work
             </Link>
@@ -50,6 +65,13 @@ export default function Services() {
         >
           Visit Resource Hub
         </a>
+
+        {/* Affiliate Disclosure */}
+        <p className="mt-6 text-sm text-gray-400 italic">
+          Some links on this page may be affiliate links. This means we may earn a small
+          commission at no extra cost to you. We only recommend tools and platforms we
+          trust and actively use.
+        </p>
       </section>
 
     </div>

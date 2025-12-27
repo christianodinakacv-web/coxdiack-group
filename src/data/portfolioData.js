@@ -18,7 +18,8 @@ const portfolioData = [
       "42% increase in qualified leads",
       "Site loading time improved from 4.3s to 1.9s",
       "Average bounce rate dropped from 63% to 29%"
-    ]
+    ],
+    tools: ["Hosting", "Domains", "UI Frameworks"]
   },
 
   {
@@ -39,7 +40,8 @@ const portfolioData = [
       "Brand recognition improved within 30 days",
       "Social engagement rose by 51%",
       "Client reported increased perceived company credibility"
-    ]
+    ],
+    tools: ["Logo Generators", "Brand Guidelines", "Typography Tools"]
   },
 
   {
@@ -60,7 +62,8 @@ const portfolioData = [
       "TikTok & Reels engagement improved by 65%",
       "Consistent posting pipeline established",
       "Content improved brand recall and shareability"
-    ]
+    ],
+    tools: ["Video Editors", "Social Schedulers", "Audio Tools"]
   },
 
   {
@@ -80,7 +83,8 @@ const portfolioData = [
       "Audience retention improved across ads",
       "More qualified leads reached the funnel",
       "Campaign metrics improved month over month"
-    ]
+    ],
+    tools: ["Funnels", "Email Automation", "Analytics Platforms"]
   },
 
   {
@@ -100,7 +104,8 @@ const portfolioData = [
       "Customer support queries reduced by 37%",
       "Improved accessibility and visual simplicity",
       "Stakeholders approved prototype on first round"
-    ]
+    ],
+    tools: ["Prototyping Tools", "Wireframe Software", "UI Libraries"]
   }
 ];
 

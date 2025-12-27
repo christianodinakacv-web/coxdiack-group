@@ -2,6 +2,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import FloatingWhatsApp from "../components/FloatingWhatsApp";
+import AffiliateHighlights from "../components/AffiliateHighlights"; // ← ADD
 
 export default function Home() {
   return (
@@ -40,6 +41,9 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      {/* Affiliate Highlights Section */}
+      <AffiliateHighlights />
 
       {/* WhatsApp Floating Button */}
       <FloatingWhatsApp />

@@ -31,7 +31,7 @@ return ( <div className="min-h-screen bg-[#0A1837] text-white pt-24 pb-20 px-6">
       </a>
 
       {/* Facebook */}
-      <a href="https://www.facebook.com/Coxdiacklifestyle" 
+      <a href="https://www.facebook.com/oxdiackdigitalhub" 
        target="_blank" rel="noopener 
        noreferrer">
         Visit our Facebook Page

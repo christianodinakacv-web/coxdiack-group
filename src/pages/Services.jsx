@@ -49,12 +49,13 @@ export default function Services() {
       {/* Affiliate Resources Section */}
       <section className="mt-24 text-center max-w-3xl mx-auto">
         <h2 className="text-3xl font-bold mb-4">
-          Tools & Learning Resources
+          Learning Resources for Digital Growth
         </h2>
 
         <p className="text-gray-300 mb-8">
-          Beyond our services, we’ve curated trusted tools, platforms, and
-          tutorials to help you grow digitally.
+          Beyond our client services, we’ve curated beginner-friendly AI tools, content systems, 
+          and digital skill resources for individuals who want to learn, grow, and build online — 
+          at their own pace.
         </p>
 
         <a
@@ -63,14 +64,12 @@ export default function Services() {
           rel="noopener noreferrer"
           className="inline-block px-8 py-4 bg-[#00FFA3] text-[#071226] rounded-lg font-semibold hover:bg-[#00cc84] transition-all"
         >
-          Visit Resource Hub
+          Explore Learning Hub
         </a>
 
         {/* Affiliate Disclosure */}
         <p className="mt-6 text-sm text-gray-400 italic">
-          Some links on this page may be affiliate links. This means we may earn a small
-          commission at no extra cost to you. We only recommend tools and platforms we
-          trust and actively use.
+          Some resources may include affiliate links. We only recommend tools and platforms we actively use and trust.
         </p>
       </section>
 

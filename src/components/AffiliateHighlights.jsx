@@ -1,5 +1,6 @@
 // src/components/AffiliateHighlights.jsx
 import React from "react";
+import { trackEvent } from "../utils/analytics"; // ✅ EXACT import path
 
 export default function AffiliateHighlights() {
   return (
@@ -38,9 +39,14 @@ export default function AffiliateHighlights() {
         </div>
       </div>
 
-      {/* CTA */}
+      {/* CTA — TRACKED */}
       <a
         href="/learn"
+        onClick={() =>
+          trackEvent("Learn_CTA_Click", {
+            source: "AffiliateHighlights",
+          })
+        }
         className="inline-block px-10 py-4 bg-[#00FFA3] text-[#071226] rounded-xl font-bold text-lg hover:bg-[#00cc84] transition-all"
       >
         Choose a Learning Path →

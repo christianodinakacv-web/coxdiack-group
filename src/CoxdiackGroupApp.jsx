@@ -8,6 +8,7 @@ import AppLayout from "./layouts/AppLayout";
 // Public Pages
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Learn from "./pages/Learn";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import PortfolioDetail from "./pages/PortfolioDetail";
@@ -54,6 +55,7 @@ export default function App() {
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/learn" element={<Learn />} />
           <Route path="/services" element={<Services />} />
 
           {/* Service Sub-Pages */}

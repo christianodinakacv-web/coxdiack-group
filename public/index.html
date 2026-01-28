@@ -43,6 +43,20 @@
     content="https://coxdiackgroup.vercel.app/coxdiack-banner.png"
   />
 
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0DW4CFSCJ8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0DW4CFSCJ8', {
+    anonymize_ip: true
+  });
+  </script>
+  <!-- End Google Analytics -->
+
+
   <!-- Meta Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s)
@@ -69,3 +83,4 @@
   <div id="root"></div>
 </body>
 </html>
+

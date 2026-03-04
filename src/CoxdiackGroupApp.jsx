@@ -12,6 +12,7 @@ import Learn from "./pages/Learn";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import PortfolioDetail from "./pages/PortfolioDetail";
+import DataEntry from "./pages/DataEntry"; // ✅ NEW
 import Contact from "./pages/Contact";
 import Testimonials from "./pages/Testimonials";
 import Feedback from "./pages/Feedback";
@@ -63,8 +64,13 @@ export default function App() {
           <Route path="/services/brand-identity" element={<BrandIdentity />} />
           <Route path="/services/digital-strategy" element={<DigitalStrategy />} />
 
+          {/* Portfolio */}
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/portfolio/:id" element={<PortfolioDetail />} />
+
+          {/* ✅ NEW: Data Entry Professional Page */}
+          <Route path="/data-entry" element={<DataEntry />} />
+
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/feedback" element={<Feedback />} />
@@ -73,6 +79,7 @@ export default function App() {
           {/* 404 for all public routes */}
           <Route path="*" element={<NotFound />} />
         </Route>
+
       </Routes>
     </Router>
   );

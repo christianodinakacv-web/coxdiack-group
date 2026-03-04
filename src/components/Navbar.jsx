@@ -37,14 +37,15 @@ export default function Navbar() {
   }, []);
 
   const menuItems = [
-    { label: "Home", path: "/" },
-    { label: "Learn", path: "/learn" }, // 🔥 PRIMARY
-    { label: "Services", path: "/services" },
-    { label: "Portfolio", path: "/portfolio" },
-    { label: "Gallery", path: "/gallery" },
-    { label: "Testimonials", path: "/testimonials" },
-    { label: "Contact", path: "/contact" },
-  ];
+  { label: "Home", path: "/" },
+  { label: "Learn", path: "/learn" },
+  { label: "Services", path: "/services" },
+  { label: "Data Entry", path: "/services/data-entry" },
+  { label: "Portfolio", path: "/portfolio" },
+  { label: "Gallery", path: "/gallery" },
+  { label: "Testimonials", path: "/testimonials" },
+  { label: "Contact", path: "/contact" },
+];
 
 
   const isActive = (path) => location.pathname === path;

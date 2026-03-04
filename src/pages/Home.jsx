@@ -31,7 +31,7 @@ export default function Home() {
             href="/services"
             className="px-6 py-3 bg-[#00FFA3] text-[#071226] rounded-lg font-semibold hover:bg-[#00cc84] transition-all"
           >
-            Explore AI Tools
+            Digital Products
           </a>
 
           <a
@@ -69,7 +69,7 @@ export default function Home() {
           </a>
 
           <a
-            href="https://mattpar.com/tube-mastery-ds#aff=Coxdiack"
+            href="https://www.checkout-ds24.com/redir/603007/Coxdiack/"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-4 border border-[#00FFA3] rounded-lg hover:bg-[#11224E] transition"
